@@ -1,0 +1,24 @@
+{
+  "name": "heritage-bastos",
+  "version": "1.0.0",
+  "description": "Site vitrine et commande en ligne - Restaurant Heritage, Bastos, Yaounde",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "admin:reset": "node scripts/reset-admin.js",
+    "test": "node test/smoke.js && node test/orders.js && node test/admin.js && node test/securite.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "nodemailer": "^10.1.0"
+  },
+  "devDependencies": {
+    "smtp-server": "^3.19.21"
+  }
+}

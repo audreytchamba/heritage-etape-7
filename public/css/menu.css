@@ -1,0 +1,104 @@
+/* Page Menu. S'appuie sur les variables de style.css */
+
+/* Barre de filtres : reste visible pendant le défilement */
+.outils {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--taro);
+  border-bottom: 2px solid var(--nuit);
+}
+.outils-inner {
+  padding: 12px var(--marge);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.filtres {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+.filtres::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex: none;
+  min-height: 44px;
+  padding: 8px 18px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--nuit);
+  background: transparent;
+  border: 2px solid var(--nuit);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.chip:hover { background: var(--taro-fonce); }
+.chip[aria-pressed="true"] { background: var(--nuit); color: var(--taro); }
+
+.tri { display: flex; align-items: center; gap: 10px; font-weight: 500; }
+.tri select {
+  min-height: 44px;
+  font: inherit;
+  color: var(--nuit);
+  background: var(--taro);
+  border: 2px solid var(--nuit);
+  border-radius: 12px;
+  padding: 6px 12px;
+}
+
+/* Liste des plats */
+.carte-menu { padding: 40px var(--marge) 80px; }
+.menu-etat { font-size: 1.1rem; }
+.menu-etat .btn { margin-top: 16px; }
+
+.menu-groupe + .menu-groupe { margin-top: 56px; }
+.menu-groupe h2 {
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: clamp(1.9rem, 6vw, 2.75rem);
+  letter-spacing: -0.015em;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--nuit);
+}
+
+.plats { list-style: none; margin: 0; padding: 0; display: grid; gap: 32px; }
+
+.plat { display: grid; align-content: start; gap: 12px; }
+.plat-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 14px;
+  background: var(--taro-fonce);
+  display: block;
+}
+.plat-tete { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.plat h3 { font-weight: 700; font-stretch: 85%; font-size: 1.4rem; }
+.plat-prix { font-family: var(--font-titre); font-weight: 800; font-size: 1.25rem; white-space: nowrap; }
+.plat-desc { color: #4a3d5c; }
+.plat-pied { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+.btn-petit { padding: 10px 18px; min-height: 44px; }
+.btn[disabled] { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.plat[data-epuise] .plat-photo { filter: grayscale(1); opacity: 0.55; }
+.badge-epuise {
+  font-weight: 600;
+  padding: 6px 12px;
+  border: 2px solid var(--nuit);
+  border-radius: 999px;
+}
+
+@media (min-width: 760px) {
+  .outils-inner { flex-direction: row; align-items: center; justify-content: space-between; }
+  .plats { grid-template-columns: repeat(2, 1fr); gap: 40px 32px; }
+}
+@media (min-width: 1100px) {
+  .plats { grid-template-columns: repeat(4, 1fr); gap: 40px 24px; }
+  .plat-tete { flex-direction: column; align-items: flex-start; gap: 2px; }
+}

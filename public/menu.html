@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu | Heritage, Bastos, Yaoundé</title>
+  <meta name="description" content="Le menu de Heritage : grillades, plats locaux, cuisine occidentale et boissons. Choisissez vos plats et commandez.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <link rel="stylesheet" href="/css/panier.css">
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Heritage, accueil">Heritage</a>
+    <nav aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/menu.html" aria-current="page">Menu</a>
+      <a href="/#infos">Nous trouver</a>
+    </nav>
+  </header>
+
+  <main id="contenu">
+    <section class="page-titre">
+      <div class="page-titre-inner">
+        <h1>Notre menu</h1>
+        <p>Grillades, plats locaux, cuisine occidentale et boissons. Les prix sont en francs CFA.</p>
+      </div>
+    </section>
+
+    <section class="outils" aria-label="Filtres et tri">
+      <div class="outils-inner">
+        <div class="filtres" id="filtres" role="group" aria-label="Filtrer par catégorie"></div>
+        <div class="tri">
+          <label for="tri">Trier par</label>
+          <select id="tri">
+            <option value="defaut">Ordre du menu</option>
+            <option value="asc">Prix croissant</option>
+            <option value="desc">Prix décroissant</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="carte-menu" aria-live="polite" aria-busy="true" id="menu">
+      <p class="menu-etat" id="menu-etat">Chargement du menu</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-marque">Heritage</p>
+    <p>Quartier Bastos, Yaoundé</p>
+    <ul class="reseaux">
+      <li><a href="#" rel="noopener" aria-label="Heritage sur Facebook">Facebook</a></li>
+      <li><a href="#" rel="noopener" aria-label="Heritage sur Instagram">Instagram</a></li>
+    </ul>
+  </footer>
+
+  <script src="/js/panier.js" defer></script>
+  <script src="/js/menu.js" defer></script>
+</body>
+</html>

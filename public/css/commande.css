@@ -1,0 +1,113 @@
+/* Page Commande. S'appuie sur les variables de style.css */
+
+/* Le panier est déjà affiché sur cette page : on masque l'icône flottante
+   (le lien "Modifier mon panier" ouvre le même volet). */
+.page-commande .panier-bouton { display: none; }
+
+.commande { padding: 40px var(--marge) 96px; max-width: calc(var(--max) + 2 * var(--marge)); }
+.commande-etat { font-size: 1.1rem; }
+.commande-etat .btn { margin-top: 16px; }
+.commande-etat[hidden], #commande-contenu[hidden] { display: none; }
+
+.commande h2 {
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: clamp(1.7rem, 5.5vw, 2.4rem);
+  letter-spacing: -0.015em;
+  margin-bottom: 20px;
+}
+
+#commande-contenu { display: grid; gap: 56px; max-width: 640px; }
+
+/* Récapitulatif */
+.recap-liste { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--nuit); }
+.recap-liste li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--taro-fonce);
+}
+.recap-nom { font-weight: 500; }
+.recap-nom span { font-variant-numeric: tabular-nums; color: #4a3d5c; }
+.recap-prix { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.recap-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  max-width: none;
+  padding-top: 16px;
+  font-size: 1.1rem;
+}
+.recap-total strong { font-family: var(--font-titre); font-weight: 800; font-size: 1.7rem; }
+
+.lien-bouton {
+  min-height: 44px;
+  padding: 0;
+  font: inherit;
+  color: var(--nuit);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Formulaire */
+.formulaire { display: grid; gap: 24px; }
+.champ { display: grid; gap: 6px; }
+.champ-ligne { display: grid; gap: 24px; }
+.formulaire label { font-weight: 600; }
+.formulaire input {
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 1.05rem;
+  color: var(--nuit);
+  background: #fff;
+  border: 2px solid var(--nuit);
+  border-radius: 12px;
+}
+.formulaire input[aria-invalid="true"] { border-color: #b3261e; background: #fff6f5; }
+.champ-aide { font-size: 0.92rem; color: #4a3d5c; }
+.champ-aide:empty { display: none; }
+.champ-erreur { font-size: 0.95rem; font-weight: 600; color: #b3261e; }
+.champ-erreur[hidden], .erreurs[hidden], .envoye[hidden] { display: none; }
+.erreurs {
+  padding: 14px 16px;
+  font-weight: 600;
+  color: #7a1913;
+  background: #fde8e6;
+  border: 2px solid #b3261e;
+  border-radius: 12px;
+  max-width: none;
+}
+.actions { display: grid; gap: 12px; }
+.actions [hidden] { display: none; }
+.btn-whatsapp { width: 100%; text-align: center; font-size: 1.05rem; }
+.btn-contour-sombre { color: var(--nuit); border-color: var(--nuit); background: transparent; text-align: center; }
+.btn-contour-sombre:hover { background: var(--taro-fonce); }
+.btn[disabled] { opacity: 0.6; cursor: wait; transform: none; }
+
+/* Champ piège anti-robots : hors écran, sans display:none */
+.piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* Confirmation après envoi par email */
+.confirmation { display: grid; gap: 16px; max-width: 640px; padding: 28px 24px; background: var(--ndole); color: var(--taro); border-radius: 16px; }
+.confirmation[hidden], .confirmation-alerte[hidden] { display: none; }
+.confirmation h2 { color: var(--braise); margin-bottom: 0; }
+.confirmation .lien-bouton { color: var(--taro); display: inline-block; line-height: 44px; }
+.confirmation-alerte { padding: 12px 14px; font-weight: 600; color: var(--nuit); background: var(--braise); border-radius: 12px; max-width: none; }
+
+/* Confirmation */
+.envoye { display: grid; gap: 16px; padding: 28px 24px; background: var(--nuit); color: var(--taro); border-radius: 16px; }
+.envoye h2 { color: var(--braise); margin-bottom: 0; }
+.envoye .lien-bouton { color: var(--taro); }
+
+@media (min-width: 760px) {
+  .champ-ligne { grid-template-columns: 1fr 1fr; }
+  .actions { grid-template-columns: auto auto; justify-content: start; }
+  .btn-whatsapp { width: auto; }
+}

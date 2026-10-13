@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Administration | Heritage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body>
+  <a class="skip" href="#principal">Aller au contenu</a>
+
+  <!-- Connexion -->
+  <main id="vue-connexion" class="centre" hidden>
+    <form id="form-connexion" class="carte-connexion" novalidate aria-labelledby="titre-connexion">
+      <h1 id="titre-connexion">Administration</h1>
+      <p class="sous-titre">Heritage, Bastos</p>
+      <p id="connexion-erreur" class="alerte" role="alert" tabindex="-1" hidden></p>
+
+      <label for="identifiant">Identifiant</label>
+      <input id="identifiant" name="identifiant" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="100" required>
+
+      <label for="motdepasse">Mot de passe</label>
+      <input id="motdepasse" name="motdepasse" type="password" autocomplete="current-password" maxlength="200" required>
+
+      <label class="case"><input id="afficher-mdp" type="checkbox"> Afficher le mot de passe</label>
+      <button type="submit" id="btn-connexion" class="btn btn-primaire">Se connecter</button>
+    </form>
+  </main>
+
+  <!-- Application -->
+  <div id="vue-app" hidden>
+    <header class="barre">
+      <p class="titre-app">Heritage <span>Administration</span></p>
+      <div class="barre-droite">
+        <a class="lien-site" href="/" target="_blank" rel="noopener">Voir le site</a>
+        <button type="button" id="btn-deconnexion" class="btn btn-contour-clair">Se déconnecter</button>
+      </div>
+    </header>
+
+    <nav class="onglets" id="onglets" aria-label="Sections">
+      <button type="button" class="onglet" data-onglet="plats">Plats</button>
+      <button type="button" class="onglet" data-onglet="categories">Catégories</button>
+      <button type="button" class="onglet" data-onglet="commandes">Commandes</button>
+      <button type="button" class="onglet" data-onglet="compte">Mot de passe</button>
+    </nav>
+
+    <main id="principal" class="contenu">
+      <p id="bandeau-mdp" class="alerte alerte-info" hidden>Pour protéger le site, choisissez votre propre mot de passe avant de continuer. Le mot de passe temporaire ne sera plus utilisable.</p>
+
+      <!-- Plats -->
+      <section id="panneau-plats" aria-labelledby="titre-plats" hidden>
+        <div class="entete">
+          <h1 id="titre-plats">Plats</h1>
+          <button type="button" id="btn-nouveau-plat" class="btn btn-primaire">Ajouter un plat</button>
+        </div>
+        <div class="filtre">
+          <label for="filtre-categorie">Catégorie</label>
+          <select id="filtre-categorie"></select>
+        </div>
+        <p id="plats-etat" class="etat" role="status"></p>
+        <ul id="liste-plats" class="plats"></ul>
+      </section>
+
+      <!-- Catégories -->
+      <section id="panneau-categories" aria-labelledby="titre-categories" hidden>
+        <div class="entete"><h1 id="titre-categories">Catégories</h1></div>
+        <form id="form-categorie" class="ligne-form" novalidate>
+          <div class="champ-grand">
+            <label for="categorie-nom">Nouvelle catégorie</label>
+            <input id="categorie-nom" type="text" maxlength="40" autocomplete="off" aria-describedby="categorie-erreur">
+            <p id="categorie-erreur" class="erreur-champ" hidden></p>
+          </div>
+          <button type="submit" class="btn btn-primaire">Ajouter</button>
+        </form>
+        <ul id="liste-categories" class="lignes"></ul>
+      </section>
+
+      <!-- Commandes -->
+      <section id="panneau-commandes" aria-labelledby="titre-commandes" hidden>
+        <div class="entete">
+          <h1 id="titre-commandes">Commandes</h1>
+          <button type="button" id="btn-actualiser" class="btn btn-contour">Actualiser</button>
+        </div>
+        <p id="commandes-etat" class="etat" role="status"></p>
+        <ul id="liste-commandes" class="commandes"></ul>
+      </section>
+
+      <!-- Compte -->
+      <section id="panneau-compte" aria-labelledby="titre-compte" hidden>
+        <div class="entete"><h1 id="titre-compte">Changer de mot de passe</h1></div>
+        <form id="form-mdp" class="carte-form" novalidate>
+          <p id="mdp-erreur" class="alerte" role="alert" tabindex="-1" hidden></p>
+
+          <label for="mdp-actuel">Mot de passe actuel</label>
+          <input id="mdp-actuel" type="password" autocomplete="current-password" maxlength="200" aria-describedby="mdp-actuel-erreur">
+          <p id="mdp-actuel-erreur" class="erreur-champ" hidden></p>
+
+          <label for="mdp-nouveau">Nouveau mot de passe</label>
+          <input id="mdp-nouveau" type="password" autocomplete="new-password" maxlength="72" aria-describedby="mdp-aide mdp-nouveau-erreur">
+          <p id="mdp-aide" class="aide">Au moins 12 caractères. Une phrase facile à retenir est un bon choix.</p>
+          <p id="mdp-nouveau-erreur" class="erreur-champ" hidden></p>
+
+          <label for="mdp-confirmer">Confirmez le nouveau mot de passe</label>
+          <input id="mdp-confirmer" type="password" autocomplete="new-password" maxlength="72" aria-describedby="mdp-confirmer-erreur">
+          <p id="mdp-confirmer-erreur" class="erreur-champ" hidden></p>
+
+          <label class="case"><input id="afficher-mdp2" type="checkbox"> Afficher les mots de passe</label>
+          <button type="submit" id="btn-mdp" class="btn btn-primaire">Enregistrer le mot de passe</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- Fenêtre : plat -->
+  <dialog id="dlg-plat" class="dlg" aria-labelledby="plat-titre">
+    <form id="form-plat" novalidate>
+      <h2 id="plat-titre">Plat</h2>
+      <p id="plat-erreur" class="alerte" role="alert" tabindex="-1" hidden></p>
+
+      <label for="plat-nom">Nom du plat</label>
+      <input id="plat-nom" type="text" maxlength="80" autocomplete="off" aria-describedby="plat-nom-erreur">
+      <p id="plat-nom-erreur" class="erreur-champ" hidden></p>
+
+      <label for="plat-desc">Description</label>
+      <textarea id="plat-desc" rows="3" maxlength="300" aria-describedby="plat-desc-erreur"></textarea>
+      <p id="plat-desc-erreur" class="erreur-champ" hidden></p>
+
+      <div class="deux">
+        <div>
+          <label for="plat-prix">Prix (FCFA)</label>
+          <input id="plat-prix" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="7" autocomplete="off" aria-describedby="plat-prix-erreur">
+          <p id="plat-prix-erreur" class="erreur-champ" hidden></p>
+        </div>
+        <div>
+          <label for="plat-cat">Catégorie</label>
+          <select id="plat-cat" aria-describedby="plat-cat-erreur"></select>
+          <p id="plat-cat-erreur" class="erreur-champ" hidden></p>
+        </div>
+      </div>
+
+      <label class="case"><input id="plat-dispo" type="checkbox"> Disponible à la commande</label>
+
+      <fieldset class="photo">
+        <legend>Photo</legend>
+        <img id="plat-apercu" class="apercu" alt="" width="400" height="300">
+        <input id="plat-photo" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="plat-photo-aide">
+        <p id="plat-photo-aide" class="aide">JPEG, PNG ou WebP. La photo est réduite automatiquement avant l'envoi.</p>
+        <p id="plat-photo-erreur" class="erreur-champ" hidden></p>
+        <button type="button" id="btn-retirer-photo" class="lien-bouton" hidden>Retirer la photo</button>
+      </fieldset>
+
+      <div class="actions-dlg">
+        <button type="submit" id="btn-enregistrer-plat" class="btn btn-primaire">Enregistrer</button>
+        <button type="button" id="btn-annuler-plat" class="btn btn-contour">Annuler</button>
+        <button type="button" id="btn-supprimer-plat" class="btn btn-danger" hidden>Supprimer ce plat</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Fenêtre : renommer une catégorie -->
+  <dialog id="dlg-cat" class="dlg dlg-petit" aria-labelledby="cat-titre">
+    <form id="form-cat" novalidate>
+      <h2 id="cat-titre">Renommer la catégorie</h2>
+      <label for="cat-nom">Nom</label>
+      <input id="cat-nom" type="text" maxlength="40" autocomplete="off" aria-describedby="cat-erreur">
+      <p id="cat-erreur" class="erreur-champ" hidden></p>
+      <div class="actions-dlg">
+        <button type="submit" class="btn btn-primaire">Enregistrer</button>
+        <button type="button" id="btn-annuler-cat" class="btn btn-contour">Annuler</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Fenêtre : confirmation -->
+  <dialog id="dlg-confirm" class="dlg dlg-petit" aria-labelledby="confirm-titre">
+    <h2 id="confirm-titre">Confirmer</h2>
+    <p id="confirm-texte"></p>
+    <div class="actions-dlg">
+      <button type="button" id="confirm-oui" class="btn btn-danger">Supprimer</button>
+      <button type="button" id="confirm-non" class="btn btn-contour">Annuler</button>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="/admin/js/admin.js" defer></script>
+</body>
+</html>

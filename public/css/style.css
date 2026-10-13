@@ -1,0 +1,273 @@
+/* Heritage, Bastos. Mobile-first. */
+
+:root {
+  --taro: #ece7f1;
+  --taro-fonce: #d9d1e2;
+  --ndole: #1b4332;
+  --braise: #f26b21;
+  --nuit: #1f1530;
+
+  --font-titre: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --font-texte: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --gutter: 20px;
+  --max: 1080px;
+  /* marge gauche/droite qui aligne en-tête, hero et pied de page sur le contenu */
+  --marge: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* L'attribut hidden doit toujours gagner, même sur un élément qui a un display (.btn, etc.) */
+[hidden] { display: none !important; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--taro);
+  color: var(--nuit);
+  font-family: var(--font-texte);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-titre);
+  line-height: 1.05;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p { margin: 0; max-width: 62ch; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--braise);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  background: var(--nuit);
+  color: var(--taro);
+  padding: 10px 14px;
+  z-index: 100;
+}
+.skip:focus { top: 10px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* En-tête */
+.site-header {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px var(--marge);
+  color: var(--taro);
+}
+.brand {
+  font-family: var(--font-titre);
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: 1.5rem;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.site-header nav { display: flex; gap: 18px; font-weight: 500; font-size: 0.95rem; }
+.site-header nav a { text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent; }
+.site-header nav a:hover,
+.site-header nav a[aria-current="page"] { border-bottom-color: var(--braise); }
+
+/* Boutons */
+.btn {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.2;
+  cursor: pointer;
+  padding: 14px 22px;
+  min-height: 48px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-braise { background: var(--braise); color: var(--nuit); }
+.btn-braise:hover { background: #ff7d36; }
+.btn-contour { border-color: var(--taro); color: var(--taro); }
+.btn-contour:hover { background: rgba(236, 231, 241, 0.12); }
+
+/* Hero */
+.hero {
+  position: relative;
+  background: var(--ndole);
+  color: var(--taro);
+  padding: 112px 0 0;
+  overflow: hidden;
+}
+.hero-inner { padding: 0 var(--marge) 72px; }
+
+.statut {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  margin-bottom: 28px;
+  border: 1.5px solid rgba(236, 231, 241, 0.45);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.statut-point {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #9a93a6;
+}
+.statut[data-etat="ouvert"] .statut-point {
+  background: var(--braise);
+  animation: braise 2.2s ease-in-out infinite;
+}
+.statut[data-etat="ferme"] .statut-point { background: #9a93a6; }
+
+@keyframes braise {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(242, 107, 33, 0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(242, 107, 33, 0); }
+}
+
+.hero h1 {
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(2.75rem, 12.5vw, 6.5rem);
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+}
+.hero-texte { margin-top: 24px; font-size: 1.15rem; max-width: 46ch; }
+.hero-actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Barres de grill : bord inférieur du hero */
+.grille {
+  height: 34px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 22px,
+      var(--braise) 22px 28px
+    );
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, transparent 100%);
+}
+
+/* Bandeau de titre des pages intérieures (menu, commande) */
+.page-titre {
+  background: var(--ndole);
+  color: var(--taro);
+  padding: 104px 0 40px;
+}
+.page-titre-inner { padding: 0 var(--marge); }
+.page-titre h1 {
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(3rem, 14vw, 6rem);
+  letter-spacing: -0.02em;
+}
+.page-titre p { margin-top: 12px; font-size: 1.1rem; }
+
+/* Sections communes */
+.forts, .infos {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 72px var(--gutter);
+}
+.forts h2, .infos h2 {
+  font-weight: 800;
+  font-stretch: 80%;
+  font-size: clamp(2rem, 7vw, 3.25rem);
+  letter-spacing: -0.015em;
+}
+
+/* Points forts */
+.forts-liste { list-style: none; margin: 40px 0 0; padding: 0; }
+.forts-liste li {
+  display: grid;
+  gap: 8px;
+  padding: 24px 0;
+  border-top: 2px solid var(--nuit);
+}
+.forts-liste li:last-child { border-bottom: 2px solid var(--nuit); }
+.forts-liste h3 { font-weight: 700; font-stretch: 85%; font-size: 1.6rem; }
+
+/* Karaoké */
+.karaoke { background: var(--nuit); color: var(--taro); }
+.karaoke-inner { max-width: var(--max); margin: 0 auto; padding: 72px var(--gutter); }
+.karaoke h2 {
+  font-weight: 800;
+  font-stretch: 75%;
+  font-size: clamp(2.25rem, 9vw, 4.5rem);
+  letter-spacing: -0.02em;
+  max-width: 16ch;
+  color: var(--braise);
+}
+.karaoke p { margin: 20px 0 28px; font-size: 1.1rem; }
+
+/* Infos pratiques */
+.infos-grille { display: grid; gap: 40px; margin-top: 40px; }
+.infos-bloc h3 { font-weight: 700; font-stretch: 85%; font-size: 1.4rem; margin: 28px 0 8px; }
+.infos-bloc h3:first-child { margin-top: 0; }
+address { font-style: normal; }
+.lien-tel { font-weight: 600; font-size: 1.2rem; text-underline-offset: 4px; }
+
+.horaires { width: 100%; max-width: 440px; border-collapse: collapse; }
+.horaires th, .horaires td { padding: 10px 0; text-align: left; border-bottom: 1px solid var(--taro-fonce); }
+.horaires th { font-weight: 500; padding-right: 16px; }
+.horaires td { text-align: right; font-variant-numeric: tabular-nums; }
+.horaires tr[data-aujourdhui] th,
+.horaires tr[data-aujourdhui] td { font-weight: 700; border-bottom-color: var(--braise); border-bottom-width: 3px; }
+
+.carte { margin-top: 48px; border: 2px solid var(--nuit); border-radius: 16px; overflow: hidden; }
+.carte iframe { display: block; width: 100%; height: 320px; border: 0; }
+
+/* Pied de page */
+.site-footer {
+  background: var(--ndole);
+  color: var(--taro);
+  padding: 40px var(--marge);
+  display: grid;
+  gap: 8px;
+}
+.footer-marque { font-family: var(--font-titre); font-weight: 800; font-stretch: 80%; font-size: 2rem; }
+.reseaux { list-style: none; margin: 8px 0 0; padding: 0; display: flex; gap: 20px; }
+.reseaux a { text-underline-offset: 4px; font-weight: 500; }
+
+/* Tablette et plus */
+@media (min-width: 760px) {
+  :root { --gutter: 40px; }
+  .site-header nav { gap: 28px; font-size: 1rem; }
+  .hero { padding-top: 140px; }
+  .forts-liste li { grid-template-columns: 1fr 1.2fr; align-items: baseline; gap: 40px; }
+  .infos-grille { grid-template-columns: 1fr 1fr; gap: 64px; }
+  .carte iframe { height: 400px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .statut[data-etat="ouvert"] .statut-point { animation: none; }
+  .btn { transition: none; }
+  .btn:hover { transform: none; }
+}

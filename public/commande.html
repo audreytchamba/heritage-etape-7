@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commander | Heritage, Bastos, Yaoundé</title>
+  <meta name="description" content="Commandez chez Heritage : choisissez le jour et l'heure, le restaurant vous rappelle pour confirmer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/commande.css">
+  <link rel="stylesheet" href="/css/panier.css">
+</head>
+<body class="page-commande">
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Heritage, accueil">Heritage</a>
+    <nav aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/menu.html">Menu</a>
+      <a href="/#infos">Nous trouver</a>
+    </nav>
+  </header>
+
+  <main id="contenu">
+    <section class="page-titre">
+      <div class="page-titre-inner">
+        <h1>Commander</h1>
+        <p>Vérifiez votre panier, indiquez vos coordonnées et l'heure souhaitée. Le restaurant vous rappelle pour confirmer.</p>
+      </div>
+    </section>
+
+    <div class="commande" id="commande">
+      <p class="commande-etat" id="commande-etat">Chargement de votre panier</p>
+
+      <div id="commande-contenu" hidden>
+        <section class="recap" aria-labelledby="recap-titre">
+          <h2 id="recap-titre">Votre panier</h2>
+          <ul class="recap-liste" id="recap-liste"></ul>
+          <p class="recap-total"><span>Total</span> <strong id="recap-total"></strong></p>
+          <button type="button" class="lien-bouton" id="modifier-panier">Modifier mon panier</button>
+        </section>
+
+        <form id="formulaire" class="formulaire" novalidate aria-labelledby="form-titre">
+          <h2 id="form-titre">Vos informations</h2>
+
+          <p class="erreurs" id="erreurs" role="alert" tabindex="-1" hidden></p>
+
+          <div class="champ">
+            <label for="nom">Votre nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="name" maxlength="80" required aria-describedby="nom-err">
+            <p class="champ-erreur" id="nom-err" hidden></p>
+          </div>
+
+          <div class="champ">
+            <label for="tel">Votre numéro de téléphone</label>
+            <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required aria-describedby="tel-aide tel-err">
+            <p class="champ-aide" id="tel-aide">Par exemple : 6 59 85 56 17</p>
+            <p class="champ-erreur" id="tel-err" hidden></p>
+          </div>
+
+          <div class="champ-ligne">
+            <div class="champ">
+              <label for="date">Jour souhaité</label>
+              <input id="date" name="date" type="date" required aria-describedby="date-err">
+              <p class="champ-erreur" id="date-err" hidden></p>
+            </div>
+            <div class="champ">
+              <label for="heure">Heure souhaitée</label>
+              <input id="heure" name="heure" type="time" step="900" required aria-describedby="heure-aide heure-err">
+              <p class="champ-aide" id="heure-aide"></p>
+              <p class="champ-erreur" id="heure-err" hidden></p>
+            </div>
+          </div>
+
+          <!-- Champ piège : invisible pour les humains, les robots le remplissent -->
+          <div class="piege" aria-hidden="true">
+            <label for="site">Ne pas remplir ce champ</label>
+            <input id="site" name="site" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="envoyer-principal" class="btn btn-braise btn-whatsapp">Envoyer ma commande</button>
+            <button type="button" id="envoyer-whatsapp" class="btn btn-contour-sombre" hidden>Envoyer par WhatsApp à la place</button>
+          </div>
+          <p class="champ-aide" id="note-envoi"></p>
+        </form>
+
+        <section class="envoye" id="envoye" aria-labelledby="envoye-titre" hidden>
+          <h2 id="envoye-titre">Votre commande est prête dans WhatsApp</h2>
+          <p>Appuyez sur « Envoyer » dans WhatsApp pour la transmettre au restaurant. Si WhatsApp ne s'est pas ouvert, utilisez le bouton ci-dessous.</p>
+          <p><a class="btn btn-braise" id="lien-whatsapp" href="#" target="_blank" rel="noopener noreferrer">Ouvrir WhatsApp</a></p>
+          <p><button type="button" class="lien-bouton" id="vider-retour">Commande envoyée : vider le panier et revenir au menu</button></p>
+        </section>
+      </div>
+
+      <section class="confirmation" id="confirmation" aria-labelledby="confirmation-titre" hidden>
+        <h2 id="confirmation-titre" tabindex="-1">Commande envoyée</h2>
+        <p id="confirmation-texte"></p>
+        <p class="confirmation-alerte" id="confirmation-alerte" hidden></p>
+        <p><a class="btn btn-braise" id="confirmation-whatsapp" href="#" target="_blank" rel="noopener noreferrer" hidden>Envoyer aussi par WhatsApp</a></p>
+        <p><a class="lien-bouton" href="/menu.html">Retour au menu</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-marque">Heritage</p>
+    <p>Quartier Bastos, Yaoundé</p>
+    <ul class="reseaux">
+      <li><a href="#" rel="noopener" aria-label="Heritage sur Facebook">Facebook</a></li>
+      <li><a href="#" rel="noopener" aria-label="Heritage sur Instagram">Instagram</a></li>
+    </ul>
+  </footer>
+
+  <script src="/js/panier.js" defer></script>
+  <script src="/js/commande.js" defer></script>
+</body>
+</html>

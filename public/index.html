@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heritage, restaurant à Bastos, Yaoundé</title>
+  <meta name="description" content="Heritage, à Bastos (Yaoundé) : poulet et poisson braisés, ndolé, taro, burgers, pizzas et tacos. Karaoké chaque vendredi soir.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/panier.css">
+</head>
+<body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Heritage, accueil">Heritage</a>
+    <nav aria-label="Navigation principale">
+      <a href="/" aria-current="page">Accueil</a>
+      <a href="/menu.html">Menu</a>
+      <a href="#infos">Nous trouver</a>
+    </nav>
+  </header>
+
+  <main id="contenu">
+    <section class="hero">
+      <div class="hero-inner">
+        <p id="statut" class="statut" role="status" data-etat="inconnu">
+          <span class="statut-point" aria-hidden="true"></span>
+          <span id="statut-texte">Horaires du jour en cours de chargement</span>
+        </p>
+        <h1>Cuisine locale et internationale au cœur de Bastos</h1>
+        <p class="hero-texte">Poulet et poisson braisés, ndolé, taro, mais aussi burgers, pizzas et tacos. Venez à table, on s'occupe du reste.</p>
+        <div class="hero-actions">
+          <a class="btn btn-braise" href="/menu.html">Voir le menu</a>
+          <a class="btn btn-contour" href="#infos">Nous trouver</a>
+        </div>
+      </div>
+      <div class="grille" aria-hidden="true"></div>
+    </section>
+
+    <section class="forts" aria-labelledby="forts-titre">
+      <h2 id="forts-titre">Ce qu'on sert chez Heritage</h2>
+      <ul class="forts-liste">
+        <li>
+          <h3>Cuisine locale</h3>
+          <p>Poulet et poisson braisés, ndolé, taro. Des plats qu'on connaît, préparés pour être partagés.</p>
+        </li>
+        <li>
+          <h3>Cuisine internationale</h3>
+          <p>Burgers, pizzas et tacos pour les soirs où l'on veut autre chose.</p>
+        </li>
+        <li>
+          <h3>Une table pour se retrouver</h3>
+          <p>Une ambiance conviviale à Bastos, pour un déjeuner entre collègues comme pour un dîner en famille.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="karaoke" aria-labelledby="karaoke-titre">
+      <div class="karaoke-inner">
+        <h2 id="karaoke-titre">Le vendredi soir, c'est karaoké</h2>
+        <p>Le micro passe de table en table. Venez chanter, ou applaudir ceux qui osent.</p>
+        <a class="btn btn-braise" href="#infos">Voir les horaires du vendredi</a>
+      </div>
+    </section>
+
+    <section id="infos" class="infos" aria-labelledby="infos-titre">
+      <h2 id="infos-titre">Nous trouver</h2>
+
+      <div class="infos-grille">
+        <div class="infos-bloc">
+          <h3>Adresse</h3>
+          <address>
+            Quartier Bastos<br>
+            Yaoundé, Cameroun
+          </address>
+
+          <h3>Téléphone et WhatsApp</h3>
+          <p><a class="lien-tel" href="tel:+237659855617">+237 6 59 85 56 17</a></p>
+        </div>
+
+        <div class="infos-bloc">
+          <h3>Horaires</h3>
+          <table class="horaires">
+            <caption class="sr-only">Horaires d'ouverture par jour</caption>
+            <tbody>
+              <tr data-jour="1" data-ouvre="11:00" data-ferme="23:00"><th scope="row">Lundi</th><td>11h à 23h</td></tr>
+              <tr data-jour="2" data-ouvre="11:00" data-ferme="23:00"><th scope="row">Mardi</th><td>11h à 23h</td></tr>
+              <tr data-jour="3" data-ouvre="11:00" data-ferme="23:00"><th scope="row">Mercredi</th><td>11h à 23h</td></tr>
+              <tr data-jour="4" data-ouvre="11:00" data-ferme="23:00"><th scope="row">Jeudi</th><td>11h à 23h</td></tr>
+              <tr data-jour="5" data-ouvre="11:00" data-ferme="02:00"><th scope="row">Vendredi (karaoké)</th><td>11h à 2h</td></tr>
+              <tr data-jour="6" data-ouvre="11:00" data-ferme="00:00"><th scope="row">Samedi</th><td>11h à minuit</td></tr>
+              <tr data-jour="0" data-ouvre="11:00" data-ferme="22:00"><th scope="row">Dimanche</th><td>11h à 22h</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="carte">
+        <iframe
+          title="Carte : Heritage, quartier Bastos, Yaoundé"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=11.4975%2C3.8850%2C11.5275%2C3.9050&amp;layer=mapnik&amp;marker=3.8950%2C11.5125"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-marque">Heritage</p>
+    <p>Quartier Bastos, Yaoundé</p>
+    <ul class="reseaux">
+      <li><a href="#" rel="noopener" aria-label="Heritage sur Facebook">Facebook</a></li>
+      <li><a href="#" rel="noopener" aria-label="Heritage sur Instagram">Instagram</a></li>
+    </ul>
+  </footer>
+
+  <script src="/js/panier.js" defer></script>
+  <script src="/js/home.js" defer></script>
+</body>
+</html>
